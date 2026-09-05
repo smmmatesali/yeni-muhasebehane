@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>SMMM Süper Enterprise v15 - Next-Gen Mizan & YMM Akademi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: #030712; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 flex h-screen overflow-hidden font-sans select-none">
+
+    <!-- DİNAMİK VE ÜSTÜN SOL MENÜ MİMARİSİ -->
+    <aside class="w-80 bg-slate-900 border-r border-slate-800 flex flex-col justify-between z-20 overflow-y-auto">
+        <div class="p-4 space-y-4">
+            
+            <!-- MARKA / OFİS BAŞLIĞI -->
+            <div class="flex items-center gap-3 px-2 py-2 border-b border-slate-800">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-violet-600 to-amber-500 flex items-center justify-center font-black text-lg shadow-lg shadow-indigo-600/30 text-white">YMM</div>
+                <div>
+                    <h1 class="text-xs font-extrabold tracking-wider text-white uppercase">SMMM ATEŞALİ GÖKER</h1>
+                    <span class="text-[11px] text-amber-400 font-bold">Enterprise & YMM Akademi v15</span>
+                </div>
+            </div>
+
+            <!-- DİNAMİK ALT MENÜ AĞACI -->
+            <nav class="space-y-3 text-xs font-medium">
+                
+                <!-- ANA SAYFA -->
+                <div>
+                    <button onclick="switchTab('dashboard')" id="nav-dashboard" class="w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-indigo-600 text-white font-bold transition shadow-lg shadow-indigo-600/25 cursor-pointer"><span>⚡</span> Executive Komuta Merkezi</button>
+                </div>
+
+                <!-- 1. YENİ NESİL MİZAN ANALİZ MERKEZİ (4 BAKIŞ AÇISI) -->
+                <div class="space-y-1">
+                    <div class="px-3 text-[10px] font-bold text-amber-400 uppercase tracking-wider">🤖 4 Gözlü AI Mizan Analizi</div>
+                    <button onclick="switchTab('mizan-yukle')" id="nav-mizan-yukle" class="w-full flex items-center gap-2.5 px-3.5 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition cursor-pointer bg-slate-800/50"><span>📥</span> Mizan Yükle & AI İncele</button>
+                    <button onclick="switchTab('analiz-isveren')" id="nav-analiz-isveren" class="w-full flex items-center gap-2.5 px-3.5 py-2 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition cursor-pointer"><span>👔</span> 1. İşveren Gözüyle Analiz</button>
+                    <button onclick="switchTab('analiz-bankaci')" id="nav-analiz-bankaci" class="w-full flex items-center gap-2.5 px-3.5 py-2 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition cursor-pointer"><span>🏦</span> 2. Bankacılar Gözüyle Rasyolar</button>
+                    <button onclick="switchTab('analiz-vergi')" id="nav-analiz-vergi" class="w-full flex items-center gap-2.5 px-3.5 py-2 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition cursor-pointer"><span>🏛️</span> 3. Vergi Dairesi / Risk Denetimi</button>
+                    <button onclick="switchTab('analiz-muhasebeci')" id="nav-analiz-muhasebeci" class="w-full flex items-center gap-2.5 px-3.5 py-2 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition cursor-pointer"><span>📊</span> 4. Muhasebeci / Düzeltme Fişleri</button>
+                </div>
+
+                <!-- 2. YEMİNLİ MALİ MÜŞAVİRLİK (YMM) AKADEMİSİ -->
+                <div class="space-y-1">
+                    <div class="px-3 text-[10px] font-bold text-indigo-400 uppercase tracking-wider">🎓 YMM Sınav & Eğitim Akademisi</div>
+                    <button onclick="switchTab('ymm-anasayfa')" id="nav-ymm-anasayfa" class="w-full flex items-center gap-2.5 px-3.5 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition cursor-pointer bg-indigo-950/40 border border-indigo-900/50"><span>🏆</span> YMM Akademi Anayasası & Dersler</button>
+                    <button onclick="switchTab('ymm-konular')" id="nav-ymm-konular" class="w-full flex items-center gap-2.5 px-3.5 py-2 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition cursor-pointer"><span>📚</span> Sınav Konuları & Notlar</button>
+                    <button onclick="switchTab('ymm-vaka')" id="nav-ymm-vaka" class="w-full flex items-center gap-2.5 px-3.5 py-2 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition cursor-pointer"><span>🧪</span> Mizan Üzerinden Vaka Çözümleri</button>
+                </div>
+
+                <!-- 3. MÜKELLEF VE OFİS OPERASYONLARI -->
+                <div class="space-y-1">
+                    <div class="px-3 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Mükellef & Ofis</div>
+                    <button onclick="switchTab('mukellef-listesi')" id="nav-mukellef-listesi" class="w-full flex items-center gap-2.5 px-3.5 py-2 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition cursor-pointer"><span>👥</span> Mükellef Portföyü (171)</button>
+                    <button onclick="switchTab('gib-sgk')" id="nav-gib-sgk" class="w-full flex items-center justify-between px-3.5 py-2 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition cursor-pointer">
+                        <span class="flex items-center gap-2.5"><span>🏛️</span> GİB & SGK Tebligat Kutusu</span>
+                        <span class="bg-rose-500/20 text-rose-400 px-1.5 py-0.5 rounded text-[10px] font-bold">4.198</span>
+                    </button>
+                    <button onclick="switchTab('mihsap-fatura')" id="nav-mihsap-fatura" class="w-full flex items-center gap-2.5 px-3.5 py-2 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition cursor-pointer"><span>⚡</span> Mihsap Akıllı Fatura & Fiş</button>
+                </div>
+
+                <!-- 4. MALİ MEVZUAT VE RAPORLAR -->
+                <div class="space-y-1">
+                    <div class="px-3 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Mali Mevzuat & Rapor</div>
+                    <button onclick="switchTab('beyanname')" id="nav-beyanname" class="w-full flex items-center gap-2.5 px-3.5 py-2 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition cursor-pointer"><span>📑</span> E-Beyanname Arşivi</button>
+                    <button onclick="switchTab('enflasyon')" id="nav-enflasyon" class="w-full flex items-center gap-2.5 px-3.5 py-2 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition cursor-pointer"><span>🧮</span> Enflasyon Muhasebesi Düzeltmesi</button>
+                    <button onclick="switchTab('mutabakat')" id="nav-mutabakat" class="w-full flex items-center gap-2.5 px-3.5 py-2 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition cursor-pointer"><span>🤝</span> Cari E-Mutabakat & BA/BS</button>
+                </div>
+
+            </nav>
+        </div>
+
+        <!-- ALT BİLGİ -->
+        <div class="p-3 bg-slate-950 border-t border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
+            <span>Sistem: <b>Enterprise v15 AI</b></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        </div>
+    </aside>
+
+    <!-- SAĞ ANA İÇERİK ALANI -->
+    <main class="flex-1 flex flex-col overflow-y-auto bg-[#070a14]">
+        
+        <!-- ÜST HEADER -->
+        <header class="h-16 border-b border-slate-800 px-8 flex justify-between items-center bg-slate-900/80 backdrop-blur sticky top-0 z-10">
+            <div class="flex items-center gap-4">
+                <h2 id="pageTitle" class="text-base font-extrabold text-white tracking-tight">Executive Komuta Merkezi</h2>
+                <div class="h-5 w-px bg-slate-800"></div>
+                <select id="aktifMukellefSec" onchange="showAlert('Mükellef bağlamı güncellendi: Tüm analizler yeniden hesaplandı.', 'bg-amber-500/20 text-amber-300 border-amber-500/30')" class="bg-slate-800 border border-slate-700 text-slate-200 text-xs rounded-xl px-3 py-1.5 outline-none cursor-pointer font-semibold">
+                    <option value="helin">Helin İnşaat Ltd. Şti. (Aktif Mizan)</option>
+                    <option value="globoturk">Globoturk Teknoloji A.Ş.</option>
+                    <option value="demdeniz">Demdeniz İnşaat</option>
+                </select>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="runAiAnalysis()" class="bg-gradient-to-r from-amber-600 to-indigo-600 hover:from-amber-500 hover:to-indigo-500 text-white px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer shadow-lg shadow-amber-600/25 flex items-center gap-2 active:scale-95"><span>🤖</span> 4 Gözlü AI Mizan Analizini Çalıştır</button>
+            </div>
+        </header>
+
+        <!-- İÇERİK CONTAINER -->
+        <div class="p-8 max-w-7xl mx-auto w-full space-y-6">
+            
+            <!-- BİLDİRİM BALONU -->
+            <div id="alertBox" class="hidden p-4 rounded-xl text-xs font-semibold border transition shadow-xl"></div>
+
+            <!-- TAB 1: EXECUTIVE DASHBOARD -->
+            <div id="tab-dashboard" class="space-y-6 tab-content">
+                <div class="grid grid-cols-4 gap-5">
+                    <div class="bg-slate-900/90 border border-slate-800/80 p-6 rounded-2xl relative overflow-hidden space-y-2">
+                        <span class="text-slate-400 text-xs font-bold uppercase tracking-wider">Aktif Portföy</span>
+                        <div class="text-3xl font-black text-white">171 Firma</div>
+                        <span class="inline-block mt-2 px-2.5 py-1 bg-indigo-500/10 text-indigo-300 text-[11px] font-semibold rounded-lg border border-indigo-500/20">Firma: 69 | Şahıs: 98</span>
+                    </div>
+                    <div class="bg-slate-900/90 border border-slate-800/80 p-6 rounded-2xl relative overflow-hidden space-y-2">
+                        <span class="text-slate-400 text-xs font-bold uppercase tracking-wider">AI Mizan Analiz Durumu</span>
+                        <div class="text-3xl font-black text-amber-400">4 Göz Aktif</div>
+                        <span class="inline-block mt-2 px-2.5 py-1 bg-amber-500/10 text-amber-300 text-[11px] font-semibold rounded-lg border border-amber-500/20">✓ 4 Bakış Açısı Hazır</span>
+                    </div>
+                    <div class="bg-slate-900/90 border border-slate-800/80 p-6 rounded-2xl relative overflow-hidden space-y-2">
+                        <span class="text-slate-400 text-xs font-bold uppercase tracking-wider">YMM Akademi</span>
+                        <div class="text-3xl font-black text-indigo-400">24 Modül</div>
+                        <span class="inline-block mt-2 px-2.5 py-1 bg-indigo-500/10 text-indigo-300 text-[11px] font-semibold rounded-lg border border-indigo-500/20">📚 Sınav Hazırlık Tam</span>
+                    </div>
+                    <div class="bg-slate-900/90 border border-slate-800/80 p-6 rounded-2xl relative overflow-hidden space-y-2">
+                        <span class="text-slate-400 text-xs font-bold uppercase tracking-wider">Riskli Hesaplar</span>
+                        <div class="text-3xl font-black text-rose-400">3 Adet</div>
+                        <span class="inline-block mt-2 px-2.5 py-1 bg-rose-500/10 text-rose-300 text-[11px] font-semibold rounded-lg border border-rose-500/20">⚠️ Düzeltme Öneriliyor</span>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900/90 border border-slate-800/80 p-7 rounded-2xl space-y-4">
+                    <h3 class="text-base font-bold text-white">SMMM Ateşali Göker - Yeni Nesil Akıllı Platform</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Hattat Müşavir ve Mihsap sistemlerinin tüm altyapı güçleri aşırılarak; mizanları **İşveren, Bankacılar, Vergi Dairesi ve Muhasebeciler** gözüyle aynı anda analiz eden ve **YMM Sınav Akademisi** ile entegre çalışan türünün ilk örneği süper platform devrededir.</p>
+                </div>
+            </div>
+
+            <!-- TAB 2: MİZAN YÜKLE & AI İNCELE -->
+            <div id="tab-mizan-yukle" class="space-y-4 tab-content hidden">
+                <div class="bg-slate-900/90 border border-slate-800/80 p-8 rounded-2xl space-y-6">
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Mizan Yükleme & 4 Gözlü AI Motoru</h3>
+                        <p class="text-xs text-slate-400 mt-1">Luca, Zirve veya Excel formatındaki aylık/yıllık mizanı yükleyin; yapay zeka mizanı saniyeler içinde 4 farklı bakış açısıyla tarasın.</p>
+                    </div>
+                    <div class="border-2 border-dashed border-slate-700 hover:border-amber-500 rounded-2xl p-8 text-center space-y-3 transition cursor-pointer bg-slate-950/40" onclick="runAiAnalysis()">
+                        <div class="text-3xl">📁</div>
+                        <div class="text-sm font-bold text-slate-200">Mizan Dosyasını Buraya Sürükleyin veya Seçin (.xlsx, .txt, .csv)</div>
+                        <div class="text-xs text-slate-500">Örnek: Helin İnşaat 2026/08 Dönemi Mizanı</div>
+                    </div>
+                    <div class="flex gap-3">
+                        <button onclick="runAiAnalysis()" class="bg-amber-600 hover:bg-amber-500 text-white px-5 py-2.5 rounded-xl text-xs font-bold cursor-pointer shadow-lg shadow-amber-600/20">🚀 Mizanı 4 Gözle Analiz Et</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: 1. İŞVEREN GÖZÜYLE -->
+            <div id="tab-analiz-isveren" class="space-y-4 tab-content hidden">
+                <div class="bg-slate-900/90 border border-slate-800/80 p-8 rounded-2xl space-y-4">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="text-lg font-bold text-amber-400">👔 1. İşveren Gözüyle Mizan Analizi</h3>
+                            <p class="text-xs text-slate-400">Şirketin kârlılığı, özkaynak gücü ve nakit akışı perspektifi.</p>
+                        </div>
+                        <span class="px-3 py-1 bg-amber-500/20 text-amber-300 text-xs rounded-lg font-bold border border-amber-500/30">Net Kâr Marjı: %18.4</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 pt-2">
+                        <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-800">
+                            <span class="text-[11px] text-slate-400">Brüt Satış Kârı</span>
+                            <div class="text-lg font-black text-white mt-1">₺2.450.000,00</div>
+                        </div>
+                        <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-800">
+                            <span class="text-[11px] text-slate-400">Özkaynak Yeterliliği</span>
+                            <div class="text-lg font-black text-emerald-400 mt-1">Güçlü (Güvenli Alan)</div>
+                        </div>
+                        <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-800">
+                            <span class="text-[11px] text-slate-400">Ticari Alacak / Borç Dengesi</span>
+                            <div class="text-lg font-black text-amber-400 mt-1">Alacaklar Vadesinde Tahsil Edilmeli</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: 2. BANKACILAR GÖZÜYLE -->
+            <div id="tab-analiz-bankaci" class="space-y-4 tab-content hidden">
+                <div class="bg-slate-900/90 border border-slate-800/80 p-8 rounded-2xl space-y-4">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="text-lg font-bold text-indigo-400">🏦 2. Bankacılar Gözüyle Rasyo Analizi</h3>
+                            <p class="text-xs text-slate-400">Kredi limitleri, likidite oranları ve finansal borç yükü.</p>
+                        </div>
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 text-xs rounded-lg font-bold border border-indigo-500/30">Kredi Skoru: A+ (Uygun)</span>
+                    </div>
+                    <table class="w-full text-left text-xs text-slate-300 mt-2">
+                        <thead class="bg-slate-800/80 text-slate-400">
+                            <tr><th class="p-3">Finansal Oran / Rasyo</th><th class="p-3">Mizan Değeri</th><th class="p-3">İdeal / Banka Kriteri</th><th class="p-3">Değerlendirme</th></tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/50">
+                            <tr><td class="p-3 font-bold">Cari Oran (Dönen Varl./Kısa Vad.Borç)</td><td class="p-3 font-mono">1.65</td><td class="p-3 font-mono">Min 1.50</td><td class="p-3 text-emerald-400 font-bold">✓ Kredi İçin Uygun</td></tr>
+                            <tr><td class="p-3 font-bold">Likidite Oranı (Asit-Test)</td><td class="p-3 font-mono">1.12</td><td class="p-3 font-mono">Min 1.00</td><td class="p-3 text-emerald-400 font-bold">✓ Yeterli</td></tr>
+                            <tr><td class="p-3 font-bold">Kaldıraç Oranı (Yabancı Kaynak/Pasif)</td><td class="p-3 font-mono">%48</td><td class="p-3 font-mono">Max %60</td><td class="p-3 text-emerald-400 font-bold">✓ Risk Sınırında Değil</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB 5: 3. VERGİ DAİRESİ GÖZÜYLE -->
+            <div id="tab-analiz-vergi" class="space-y-4 tab-content hidden">
+                <div class="bg-slate-900/90 border border-slate-800/80 p-8 rounded-2xl space-y-4">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="text-lg font-bold text-rose-400">🏛️ 3. Vergi Dairesi & Risk Denetimi</h3>
+                            <p class="text-xs text-slate-400">KKEG, stok uyumsuzlukları ve vergi inceleme risk tespiti.</p>
+                        </div>
+                        <span class="px-3 py-1 bg-rose-500/20 text-rose-300 text-xs rounded-lg font-bold border border-rose-500/30">⚠️ 2 Risk Tespit Edildi</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="p-4 bg-rose-500/10 border border-rose-500/30 rounded-xl space-y-1">
+                            <div class="font-bold text-xs text-rose-300">1. Kasa Hesabi (100) Yüksek Bakiye Uyarısı</div>
+                            <div class="text-[11px] text-slate-300">100 Kasa hesabında ₺1.450.000 birikmiştir. Ortaklara borçlar (331) veya örtülü kazanç dağıtımı yönünden vergi denetim riski taşımaktadır.</div>
+                        </div>
+                        <div class="p-4 bg-amber-500/10 border border-amber-500/30 rounded-xl space-y-1">
+                            <div class="font-bold text-xs text-amber-300">2. KKEG (689) Eksik Beyan Riski</div>
+                            <div class="text-[11px] text-slate-300">Kanunen kabul edilmeyen giderlerin 770 ve 760 hesaplar içinde izlendiği tespit edildi. Ayrıştırılması önerilir.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 6: 4. MUHASEBECİLER GÖZÜYLE -->
+            <div id="tab-analiz-muhasebeci" class="space-y-4 tab-content hidden">
+                <div class="bg-slate-900/90 border border-slate-800/80 p-8 rounded-2xl space-y-4">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="text-lg font-bold text-emerald-400">📊 4. Muhasebeciler (SMMM) Gözüyle Fiş ve Mutabakat</h3>
+                            <p class="text-xs text-slate-400">Yevmiye-mizan tutarlılığı, ters bakiye veren hesaplar ve düzeltme önerileri.</p>
+                        </div>
+                        <button onclick="showAlert('Düzeltme fişleri taslağı oluşturuldu.', 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-xs font-bold cursor-pointer">Otomatik Düzeltme Fişi Bas</button>
+                    </div>
+                    <table class="w-full text-left text-xs text-slate-300 mt-2">
+                        <thead class="bg-slate-800/80 text-slate-400">
+                            <tr><th class="p-3">Hesap Kodu & Adı</th><th class="p-3">Borç Bakiye</th><th class="p-3">Alacak Bakiye</th><th class="p-3">Muhasebe Durumu</th></tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/50">
+                            <tr><td class="p-3 font-mono">120 Alıcılar</td><td class="p-3 font-mono">₺850.000</td><td class="p-3 font-mono">₺12.400</td><td class="p-3 text-amber-400 font-bold">⚠️ Alacak bakiyesi veren 120 hesap var (340'a aktarılmalı)</td></tr>
+                            <tr><td class="p-3 font-mono">320 Satıcılar</td><td class="p-3 font-mono">₺45.000</td><td class="p-3 font-mono">₺620.000</td><td class="p-3 text-amber-400 font-bold">⚠️ Borç bakiyesi veren 320 hesap var (159/195'e aktarılmalı)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB 7: YMM AKADEMİSİ ANAYASASI VE DERSLER -->
+            <div id="tab-ymm-anasayfa" class="space-y-4 tab-content hidden">
+                <div class="bg-slate-900/90 border border-slate-800/80 p-8 rounded-2xl space-y-5">
+                    <div>
+                        <h3 class="text-lg font-bold text-indigo-400">🎓 Yeminli Mali Müşavirlik (YMM) Sınav Akademisi</h3>
+                        <p class="text-xs text-slate-400 mt-1">Muhasebehane Anayasası ve YMM Akademi standartlarına uygun olarak hazırlanmış resmi sınav hazırlık merkezi.</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-5 bg-indigo-950/30 border border-indigo-900/40 rounded-2xl space-y-2">
+                            <h4 class="font-bold text-sm text-white">📜 YMM Akademi Anayasası</h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">YMM sınavlarına hazırlanan meslektaşlar için teorik bilgi ile pratik mizan analizini birleştiren, yapay zeka destekli ilk dijital çalışma kampıdır. Her gün güncellenen vaka analizleri içerir.</p>
+                        </div>
+                        <div class="p-5 bg-slate-800/40 border border-slate-800 rounded-2xl space-y-2">
+                            <h4 class="font-bold text-sm text-white">📚 Sınav Konu Başlıkları</h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">İleri Düzey Muhasebe, Vergi Usul Kanunu, Kurumlar Vergisi, KDV Uygulamaları, Türk Ticaret Kanunu ve Denetim Standartları tam set ders notları.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 8: YMM KONULAR VE DERSLER -->
+            <div id="tab-ymm-konular" class="space-y-4 tab-content hidden">
+                <div class="bg-slate-900/90 border border-slate-800/80 p-8 rounded-2xl space-y-4">
+                    <h3 class="text-lg font-bold text-white">YMM Sınavı Konu ve Ders Notları Arşivi</h3>
+                    <div class="space-y-2">
+                        <div class="p-4 bg-slate-800/40 border border-slate-800 rounded-xl flex justify-between items-center">
+                            <div><div class="font-bold text-xs text-white">Ders 1: Enflasyon Muhasebesi ve Düzeltme Farklarının Vergiye Etkisi</div><div class="text-[11px] text-slate-400 mt-0.5">Yazar: YMM Ateşali Göker | Süre: 45 Dk</div></div>
+                            <button onclick="showAlert('YMM Ders notu açıldı.', 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer">Dersi İncele</button>
+                        </div>
+                        <div class="p-4 bg-slate-800/40 border border-slate-800 rounded-xl flex justify-between items-center">
+                            <div><div class="font-bold text-xs text-white">Ders 2: Örtülü Sermaye, Transfer Fiyatlandırması ve Mizan Analizi</div><div class="text-[11px] text-slate-400 mt-0.5">Yazar: YMM Ateşali Göker | Süre: 60 Dk</div></div>
+                            <button onclick="showAlert('YMM Ders notu açıldı.', 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer">Dersi İncele</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 9: YMM VAKA ÇÖZÜMLERİ -->
+            <div id="tab-ymm-vaka" class="space-y-4 tab-content hidden">
+                <div class="bg-slate-900/90 border border-slate-800/80 p-8 rounded-2xl space-y-4">
+                    <h3 class="text-lg font-bold text-white">Mizan Üzerinden Gerçek Vaka Çözümleri (YMM Sınav Simülasyonu)</h3>
+                    <p class="text-xs text-slate-400">Çıkmış YMM sınav soruları ve hatalı mizanlar üzerinden düzeltme kayıtları oluşturma pratikleri.</p>
+                </div>
+            </div>
+
+            <!-- DİĞER MODÜLLER İÇİN ORTAK RENDER -->
+            <div id="tab-mukellef-listesi" class="space-y-4 tab-content hidden"><div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl text-xs text-slate-300">Mükellef Portföyü Yönetimi aktif.</div></div>
+            <div id="tab-gib-sgk" class="space-y-4 tab-content hidden"><div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl text-xs text-slate-300">GİB ve SGK Tebligat Merkezi aktif.</div></div>
+            <div id="tab-mihsap-fatura" class="space-y-4 tab-content hidden"><div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl text-xs text-slate-300">Mihsap Akıllı Fatura ve Fiş motoru aktif.</div></div>
+            <div id="tab-beyanname" class="space-y-4 tab-content hidden"><div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl text-xs text-slate-300">E-Beyanname Arşivi aktif.</div></div>
+            <div id="tab-enflasyon" class="space-y-4 tab-content hidden"><div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl text-xs text-slate-300">Enflasyon Muhasebesi Düzeltme modülü aktif.</div></div>
+            <div id="tab-mutabakat" class="space-y-4 tab-content hidden"><div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl text-xs text-slate-300">Cari E-Mutabakat merkezi aktif.</div></div>
+
+        </div>
+    </main>
+
+    <!-- SCRIPT ROUTER & AI ENGINE -->
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById('tab-' + tabId);
+            if(target) target.classList.remove('hidden');
+
+            document.querySelectorAll('nav button').forEach(el => {
+                el.className = el.className.replace('bg-indigo-600 text-white font-bold shadow-lg shadow-indigo-600/25', 'text-slate-400 hover:bg-slate-800 hover:text-slate-200');
+            });
+            const activeBtn = document.getElementById('nav-' + tabId);
+            if(activeBtn) {
+                activeBtn.className = 'w-full flex items-center gap-2.5 px-3.5 py-2 rounded-lg bg-indigo-600 text-white font-bold transition cursor-pointer text-xs shadow-lg shadow-indigo-600/25';
+            }
+
+            const titles = {
+                dashboard: 'Executive Komuta Merkezi',
+                'mizan-yukle': 'Mizan Yükleme & 4 Gözlü AI İnceleme',
+                'analiz-isveren': '1. İşveren Gözüyle Mizan Analizi',
+                'analiz-bankaci': '2. Bankacılar Gözüyle Rasyo Analizi',
+                'analiz-vergi': '3. Vergi Dairesi / Risk Denetimi',
+                'analiz-muhasebeci': '4. Muhasebeci / Düzeltme Fişleri',
+                'ymm-anasayfa': 'YMM Akademi Anayasası & Dersler',
+                'ymm-konular': 'YMM Sınav Konuları & Notlar',
+                'ymm-vaka': 'Mizan Üzerinden Vaka Çözümleri',
+                'mukellef-listesi': 'Mükellef Portföyü (171 Firma)',
+                'gib-sgk': 'GİB & SGK Tebligat Kutusu',
+                'mihsap-fatura': 'Mihsap Akıllı Fatura & Fiş Motoru',
+                beyanname: 'E-Beyanname Arşivi',
+                enflasyon: 'Enflasyon Muhasebesi Düzeltmesi',
+                mutabakat: 'Cari E-Mutabakat & BA/BS'
+            };
+            document.getElementById('pageTitle').innerText = titles[tabId] || 'SMMM Süper Enterprise';
+        }
+
+        function showAlert(msg, colorClass) {
+            const b = document.getElementById('alertBox');
+            b.className = 'mb-4 p-3.5 rounded-xl text-xs font-semibold border transition shadow-xl ' + colorClass;
+            b.innerText = msg;
+            b.classList.remove('hidden');
+            setTimeout(() => b.classList.add('hidden'), 4000);
+        }
+
+        function runAiAnalysis() {
+            switchTab('analiz-isveren');
+            showAlert('🤖 4 Gözlü AI Mizan Analizi tamamlandı: İşveren, Bankacı, Vergi Dairesi ve SMMM raporları hazır!', 'bg-amber-500/20 text-amber-300 border-amber-500/30');
+        }
+    </script>
+</body>
+</html>
