@@ -1,0 +1,8 @@
+MUHASEBEHANE AÇILABİLİR TANITIM PAKETİ
+
+1. ZIP dosyasını klasöre çıkarın.
+2. index.html dosyasına çift tıklayın.
+3. Video internet olmadan çalışır. Tarayıcı sesli otomatik oynatmayı engellerse videonun üzerindeki "Sesi Aç" düğmesine basın.
+4. YMM Akademisi bağlantısı paket içindeki ymm-akademisi.html sayfasını açar.
+
+Bu paket, kaynak Next.js projesine dokunmadan hazırlanmış çevrimdışı tanıtım önizlemesidir. Sunucu gerektiren panel, AI Asistan ve müşteri portalı bağlantıları yalnızca çevrimiçi uygulamada çalışır.
